@@ -4,7 +4,29 @@ import Table from 'react-bootstrap/Table';
 import LogItem from './LogItem';
 
 const App = () => {
-  const [logs, setLogs] = useState([]);
+  const [logs, setLogs] = useState([
+    {
+      _id: 1,
+      text: 'This is a log one',
+      priority: 'low',
+      user: 'Jay',
+      created: new Date().toString(),
+    },
+    {
+      _id: 2,
+      text: 'This is a log two',
+      priority: 'high',
+      user: 'Kate',
+      created: new Date().toString(),
+    },
+    {
+      _id: 3,
+      text: 'This is a log three',
+      priority: 'low',
+      user: 'Miles',
+      created: new Date().toString(),
+    },
+  ]);
 
   return (
     <Container>
@@ -20,7 +42,7 @@ const App = () => {
         </thead>
         <tbody>
           {logs.map(log => (
-            <LogItem />
+            <LogItem key={log._id} log={log} />
           ))}
         </tbody>
       </Table>
