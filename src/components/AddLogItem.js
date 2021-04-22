@@ -12,7 +12,7 @@ const AddLogItem = ({ addItem }) => {
 
   const onSubmit = e => {
     e.preventDefault();
-    addItem({ text, user, security });
+    addItem({ text, user, priority });
 
     setText('');
     setUser('');
