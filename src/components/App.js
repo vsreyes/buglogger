@@ -36,6 +36,11 @@ const App = () => {
   });
 
   function addItem(item) {
+    if (item.text === '' || item.user === '' || item.priority === '') {
+      showAlert('Please enter all fields', 'danger');
+      return false;
+    }
+
     item._id = Math.floor(Math.random() * 90000) + 10000;
     item.created = new Date().toString();
     setLogs([...logs, item]);
