@@ -18,7 +18,7 @@ const App = () => {
     ipcRenderer.send('logs:load');
 
     ipcRenderer.on('logs:get', (e, logs) => {
-      sestLogs(JSON.parse(logs));
+      setLogs(JSON.parse(logs));
     });
   }, []);
 
