@@ -7,29 +7,7 @@ import AddLogItem from './AddLogItem';
 import { ipcRenderer } from 'electron';
 
 const App = () => {
-  const [logs, setLogs] = useState([
-    {
-      _id: 1,
-      text: 'This is a log one',
-      priority: 'low',
-      user: 'Jay',
-      created: new Date().toString(),
-    },
-    {
-      _id: 2,
-      text: 'This is a log two',
-      priority: 'high',
-      user: 'Kate',
-      created: new Date().toString(),
-    },
-    {
-      _id: 3,
-      text: 'This is a log three',
-      priority: 'low',
-      user: 'Miles',
-      created: new Date().toString(),
-    },
-  ]);
+  const [logs, setLogs] = useState([]);
   const [alert, setAlert] = useState({
     show: false,
     message: '',
@@ -38,6 +16,10 @@ const App = () => {
 
   useEffect(() => {
     ipcRenderer.send('logs:load');
+
+    ipcRenderer.on('logs:get', (e, logs) => {
+      sestLogs(JSON.parse(logs));
+    });
   }, []);
 
   function addItem(item) {
