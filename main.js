@@ -71,9 +71,14 @@ function createMainWindow() {
   mainWindow.on('closed', () => (mainWindow = null));
 }
 
-app.on('ready', createMainWindow);
+app.on('ready', () => {
+  createMainWindow();
 
-const Menu = [
+  const mainMenu = Menu.buildFromTemplate(menu);
+  Menu.setApplicationMenu(mainMenu);
+});
+
+const menu = [
   ...(isWin ? [{ role: 'appMenu' }] : []),
   {
     role: 'fileMenu',
